@@ -23,15 +23,15 @@ const SubjectCard = ({
   totalStudents,
 }: SubjectInfo) => {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const [openDetail, setOpenDetail] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const handleCardClick = (id: string) => {
     setSelectedSubject(id);
-    setOpenDetail(true);
+    setOpenDialog(true);
   };
 
   const handleCloseDetail = () => {
-    setOpenDetail(false);
+    setOpenDialog(false);
   };
 
   return (
@@ -39,6 +39,7 @@ const SubjectCard = ({
       <Card
         sx={{
           height: "100%",
+          maxHeight: "180px",
           display: "flex",
           flexDirection: "column",
           transition: "all 0.3s",
@@ -52,8 +53,8 @@ const SubjectCard = ({
       >
         <CardHeader
           sx={{
-            bgcolor: "#D5A7FF",
-            color: "#393939",
+            bgcolor: "#1976d2",
+            color: "#FFFFF0",
             p: 2,
           }}
           avatar={
@@ -111,7 +112,7 @@ const SubjectCard = ({
 
       {selectedSubject && (
         <SubjectDetail
-          open={openDetail}
+          open={openDialog}
           subjectId={id}
           // subject={selectedSubject}
           onClose={handleCloseDetail}

@@ -4,6 +4,7 @@ import com.monjaras.backend.dtos.StudentDTO;
 import com.monjaras.backend.dtos.TeacherDTO;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -14,7 +15,6 @@ public class Subject {
     @Id
     private String id;
     private String name;
-
-    private List<TeacherDTO> teachers;
-    private List<StudentDTO> students;
+    private List<String> teachers;
+    private List<String> students;
 }

@@ -6,6 +6,5 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class SubjectDTO {
-    private String name;
-    private String subjectId;
+    private String id;
 }

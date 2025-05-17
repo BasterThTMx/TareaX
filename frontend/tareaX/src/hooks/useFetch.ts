@@ -4,27 +4,31 @@ function useFetch<T>(endpoint: string) {
   const [data, setData] = useState<T[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/" + endpoint);
 
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
+  const fetchGET = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch("http://localhost:8080/api/" + endpoint);
 
-        const result = (await response.json()) as T[];
-        setData(result);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Error desconocido");
-      } finally {
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
-    };
-    fetchData();
+
+      const result = (await response.json()) as T[];
+      setData(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error desconocido");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchGET();
   }, [endpoint]);
 
-  return { data, error, loading };
+  return { data, error, loading, fetchGET };
 }
 
 export default useFetch;
