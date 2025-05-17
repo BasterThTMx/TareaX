@@ -1,6 +1,7 @@
 package com.monjaras.backend.subject;
 
 import com.monjaras.backend.dtos.SubjectInfoDTO;
+import com.monjaras.backend.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,28 @@ public class SubjectController {
         return subjectService.getSubject(id);
     }
 
-    @GetMapping("/getSubjectsInfo")
-    public List<SubjectInfoDTO> getSubjectsInfo() {
-        return subjectService.getSubjectsInfo();
+    @PostMapping("/getSubjectByName")
+    public List<Subject> getSubjectByName(@RequestBody Subject params) {
+        return subjectService.getSubjectByName(params.getName());
+    }
+
+    @GetMapping("/getSubjectsDetail")
+    public List<SubjectInfoDTO> getSubjectsDetail() {
+        return subjectService.getSubjectsDetail();
+    }
+
+    @PostMapping("/addSubject")
+    public List<Subject> addSubject(@RequestBody Subject subject) {
+        return subjectService.addSubject(subject);
+    }
+
+    @PostMapping("/updateSubject")
+    public List<Subject> updateSubject(@RequestBody Subject subject) {
+        return subjectService.updateSubject(subject);
+    }
+
+    @PostMapping("/deleteSubject")
+    public void deleteSubject(@RequestBody Subject subject) {
+        subjectService.deleteSubject(subject);
     }
 }

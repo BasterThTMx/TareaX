@@ -6,6 +6,5 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class TeacherDTO {
-    private String name;
-    private String teacherId;
+    private String id;
 }

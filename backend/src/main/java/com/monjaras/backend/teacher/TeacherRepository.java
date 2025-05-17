@@ -1,4 +1,6 @@
 package com.monjaras.backend.teacher;
 
-public class TeacherRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface TeacherRepository extends MongoRepository<Teacher, String> {
 }

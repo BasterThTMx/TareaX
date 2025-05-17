@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function useFetchPost<T>(endpoint: string, body: any) {
+function useFetchPost<T>() {
   const [data, setData] = useState<T[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async () => {
+  const fetchPOST = async (endpoint: string, body: object) => {
     setLoading(true);
     setError(null);
     try {
@@ -21,14 +21,16 @@ function useFetchPost<T>(endpoint: string, body: any) {
 
       const result = (await response.json()) as T[];
       setData(result);
+      return result;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
+      return [];
     } finally {
       setLoading(false);
     }
   };
 
-  return { data, error, loading, fetchData };
+  return { data, error, loading, fetchPOST };
 }
 
 export default useFetchPost;

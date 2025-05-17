@@ -13,6 +13,10 @@ import java.util.List;
 public class Student {
     @Id
     private String id;
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String fullName;
+    private String email;
+    private String phoneNumber;
     private List<SubjectDTO> subjects;
 }

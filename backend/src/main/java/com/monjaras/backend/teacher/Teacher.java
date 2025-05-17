@@ -1,5 +1,6 @@
 package com.monjaras.backend.teacher;
 
+import com.monjaras.backend.dtos.StudentDTO;
 import com.monjaras.backend.dtos.SubjectDTO;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -12,7 +13,11 @@ import java.util.List;
 public class Teacher {
     @Id
     private String id;
-    private String name;
-
+    private String firstName;
+    private String lastName;
+    private String fullName;
+    private String email;
+    private String phoneNumber;
     private List<SubjectDTO> subjects;
+    private List<StudentDTO> students;
 }
